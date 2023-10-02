@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string convert(string s, int nums) {
+        int n = s.length();
+        if(nums <= 1 || nums> n)
+            return s;
+        
+        vector<string> str(nums);
+        int pos = -1; // can be -1 or 1 
+        int row = 0;
+        for(auto c: s)
+        {
+            string st;
+            str[row].push_back(c);
+            st+= c;
+            if(row == 0 || row == nums-1) // for checking our position in the zig zag whether top or bottom 
+            {
+                pos*=-1; // for the zig zag pattern 
+            }   
+            row+=pos; // if position is decremented this means that we're accessing the elements in the diagonal
+            
+        }
+        string temp = "";
+        for(auto c: str)
+            for(auto ch: c)
+                temp+=ch;
+        
+        return temp;
+    }
+};
